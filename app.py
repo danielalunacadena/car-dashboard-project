@@ -4,6 +4,14 @@ import streamlit as st
 
 st.header("Car Sales Dashboard")
 
+st.write("""
+This dashboard explores the relationship between vehicle mileage and price 
+using a dataset of used car listings.
+
+Use the buttons below to generate visualizations and analyze how mileage 
+affects car prices.
+""")
+
 df = pd.read_csv("vehicles_us.csv")
 
 hist_button = st.button("Construir histograma")
@@ -19,3 +27,4 @@ if scatter_button:
     st.write("Relación entre precio y kilometraje")
     fig2 = px.scatter(df, x="odometer", y="price")
     st.plotly_chart(fig2)
+    
