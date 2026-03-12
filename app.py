@@ -24,16 +24,6 @@ fuel_filter = st.sidebar.multiselect(
 
 df = df[df["fuel"].isin(fuel_filter)]
 
-st.sidebar.header("Filters")
-
-fuel = st.sidebar.multiselect(
-    "Fuel Type",
-    options=df["fuel"].dropna().unique(),
-    default=df["fuel"].dropna().unique()
-)
-
-df = df[df["fuel"].isin(fuel)]
-
 st.subheader("Dataset Overview")
 
 col1, col2, col3 = st.columns(3)
