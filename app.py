@@ -16,6 +16,16 @@ df = pd.read_csv("vehicles_us.csv")
 
 st.sidebar.header("Filters")
 
+fuel_filter = st.sidebar.multiselect(
+    "Fuel Type",
+    options=df["fuel"].dropna().unique(),
+    default=df["fuel"].dropna().unique()
+)
+
+df = df[df["fuel"].isin(fuel_filter)]
+
+st.sidebar.header("Filters")
+
 fuel = st.sidebar.multiselect(
     "Fuel Type",
     options=df["fuel"].dropna().unique(),
