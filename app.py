@@ -14,6 +14,19 @@ affects car prices.
 
 df = pd.read_csv("vehicles_us.csv")
 
+st.subheader("Dataset Overview")
+
+col1, col2, col3 = st.columns(3)
+
+with col1:
+    st.metric("Total Cars", df.shape[0])
+
+with col2:
+    st.metric("Average Price", f"${df['price'].mean():,.0f}")
+
+with col3:
+    st.metric("Average Mileage", f"{df['odometer'].mean():,.0f}")
+
 hist_button = st.button("Construir histograma")
 
 if hist_button:
