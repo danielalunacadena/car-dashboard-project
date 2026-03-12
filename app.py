@@ -61,6 +61,6 @@ st.plotly_chart(fig_year)
 
 st.subheader("Price by Fuel Type")
 
-fig_fuel = px.box(df, x="fuel", y="price")
+fig_fuel = px.box(df, x="fuel", y="price", color="transmission")
 
 st.plotly_chart(fig_fuel)
