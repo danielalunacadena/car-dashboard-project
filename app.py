@@ -14,6 +14,16 @@ affects car prices.
 
 df = pd.read_csv("vehicles_us.csv")
 
+st.sidebar.header("Filters")
+
+fuel = st.sidebar.multiselect(
+    "Fuel Type",
+    options=df["fuel"].dropna().unique(),
+    default=df["fuel"].dropna().unique()
+)
+
+df = df[df["fuel"].isin(fuel)]
+
 st.subheader("Dataset Overview")
 
 col1, col2, col3 = st.columns(3)
@@ -41,3 +51,16 @@ if scatter_button:
     fig2 = px.scatter(df, x="odometer", y="price")
     st.plotly_chart(fig2)
     
+    st.subheader("Average Price by Year")
+
+price_year = df.groupby("model_year")["price"].mean().reset_index()
+
+fig_year = px.line(price_year, x="model_year", y="price")
+
+st.plotly_chart(fig_year)
+
+st.subheader("Price by Fuel Type")
+
+fig_fuel = px.box(df, x="fuel", y="price")
+
+st.plotly_chart(fig_fuel)
